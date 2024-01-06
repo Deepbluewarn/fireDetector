@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react';
 import SensorNode from './Interface/SensorNode';
 import { Card, CardActions, CardContent, Chip, Grid, Stack, ThemeProvider, Typography, createTheme } from '@mui/material';
 import mqtt from 'mqtt';
+import TimeAgo from 'javascript-time-ago'
+import ko from 'javascript-time-ago/locale/ko'
+import ReactTimeAgo from 'react-time-ago';
+
+TimeAgo.addDefaultLocale(ko);
+TimeAgo.addLocale(ko);
 
 const theme = createTheme({
   typography: {
@@ -46,9 +52,17 @@ function App() {
               {node.temperature}℃ / {node.humidity}%
             </Typography>
             <Typography variant="body2">
-              {node.movementDetected ? '음직임이 감지 됨.' : ''}
-              <br />
-              센서 배터리 잔량: {node.battery}%
+              {
+                typeof node.movementDetectedTime !== 'undefined' ? (
+                  <span>
+                    <ReactTimeAgo date={node.movementDetectedTime} locale="ko"/>
+                    &nbsp;음직임 감지.
+                  </span>
+                ) : (
+                  null
+                )
+              }
+              
             </Typography>
           </CardContent>
           <CardActions>
@@ -103,7 +117,6 @@ function App() {
         <Grid
           container
           spacing={4}
-          alignItems={'center'}
         >
           {list}
         </Grid>
