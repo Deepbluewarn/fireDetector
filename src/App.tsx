@@ -118,7 +118,16 @@ function App() {
           container
           spacing={4}
         >
-          {list}
+          {
+            list.length > 0 ? list : 
+            (
+              <Grid item>
+                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                  화재 감지 센서가 없습니다.
+                </Typography>
+              </Grid>
+            )
+          }
         </Grid>
       </Stack>
     </ThemeProvider>
