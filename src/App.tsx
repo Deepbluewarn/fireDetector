@@ -65,13 +65,24 @@ function App() {
               
             </Typography>
           </CardContent>
-          <CardActions>
+          <CardActions disableSpacing>
+
             {
               node.checkResult ?
                 <Chip label="점검 성공" color="primary" /> :
                 <Chip label="점검 필요" color="error" />
             }
-
+            <Typography 
+              sx={{ 
+                fontSize: 14,
+                marginLeft: 'auto',
+                alignSelf: 'end',
+              }} 
+              color="text.secondary" 
+              gutterBottom
+            >
+              <ReactTimeAgo date={node.time} locale="ko"/>
+            </Typography>
           </CardActions>
         </Card>
       </Grid>

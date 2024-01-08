@@ -5,5 +5,6 @@ export default interface SensorNode {
     humidity: number;
     fireDetected: boolean;
     movementDetectedTime?: number;
-    checkResult?: boolean; // 센서 동작 점검 결과
+    checkResult?: boolean; // 센서 동작 점검 결과,
+    time: number; // 메시지 생성 시간
 }
