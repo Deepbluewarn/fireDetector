@@ -36,18 +36,24 @@ function App() {
     return (
       <Grid item key={node.id}>
         <Card sx={{ 
-          border: node.fireDetected ? 'solid 4px #f44336' : 'none',
-          width: 200,
+          border: node.fireDetected ? 'solid 4px #f44336' : 'none', height: 300, width: 245, borderRadius: 4, padding: 2, display: 'grid', flexDirection: 'column', alignItems: 'center'
         }}>
           <CardContent>
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {node.name}
             </Typography>
-            <Typography variant="h5" component="div">
-              {
-                node.fireDetected ? '🔥화재 발생🔥' : '화재 감지 안됨.'
-              }
+
+            {node.fireDetected ? (
+            <Typography variant="h5" component="div" color="red">
+            화재 발생
             </Typography>
+            ) : (
+            <Typography variant="h5" component="div">
+            화재 감지 안됨
+            </Typography>
+            )}
+
+            
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               {node.temperature}℃ / {node.humidity}%
             </Typography>
@@ -56,7 +62,7 @@ function App() {
                 typeof node.movementDetectedTime !== 'undefined' ? (
                   <span>
                     <ReactTimeAgo date={node.movementDetectedTime} locale="ko"/>
-                    &nbsp;음직임 감지.
+                    &nbsp;에 움직임이 감지되었어요
                   </span>
                 ) : (
                   null
@@ -65,11 +71,13 @@ function App() {
               
             </Typography>
           </CardContent>
-          <CardActions disableSpacing>
+          <CardActions disableSpacing sx={{ 
+                display: 'flex', alignItems: 'flex-end', alignContent: 'flex-end'
+              }} >
 
             {
               node.checkResult ?
-                <Chip label="점검 성공" color="primary" /> :
+                <Chip label="정상 작동" color="primary" /> :
                 <Chip label="점검 필요" color="error" />
             }
             <Typography 
@@ -117,24 +125,26 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Stack gap={2} sx={{ padding: 4 }}>
-        <Typography variant="h4" component="div">
-          🔥🔥화재 감지 시스템🔥🔥
+    <ThemeProvider theme={theme} >
+      <div style={{ backgroundColor: '#810000', height: '50px', maxWidth: '100%', padding: '10px'}} >
+      <Typography variant="h5" component="div" color="white" sx={{ textAlign: 'left', display: 'flex', alignContent: 'center', marginLeft: '25px'}}>
+        <img src="./vite.svg" width="24" height="24" style={{ marginRight: '10px' }} />
+        화재 감지 시스템
         </Typography>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          건물 내 화재 현황을 실시간으로 확인할 수 있습니다.
-        </Typography>
-        <Grid
-          container
-          spacing={4}
-        >
+      </div>
+
+      <Typography sx={{ backgroundColor: '#f0f0f0', borderRadius: 3, padding: 1, marginLeft: '15px', marginTop: '15px', marginRight: '15px',maxWidth: '100%', height: 50, display: 'flex', alignItems: 'center', textAlign: 'center', color: 'grey', fontSize: 15, paddingLeft: 5}} >
+        현재 {list.length}개의 화재 감지기가 연결되어 있어요
+      </Typography>
+
+      <Stack gap={2} sx={{ padding: 2, display: 'flex', alignContent: 'center'}}>
+        <Grid container spacing={4} sx={{ backgroundColor: '#f0f0f0', borderRadius: 4, padding: 1, margin: '0 auto',  maxWidth: '100%', paddingBottom: '40px'}} >
           {
             list.length > 0 ? list : 
             (
               <Grid item>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  화재 감지 센서가 없습니다.
+                <Typography sx={{ fontSize: 15, textAlign: 'center', color: 'grey' }} gutterBottom>
+                  화재 감지기를 연결해주세요
                 </Typography>
               </Grid>
             )
