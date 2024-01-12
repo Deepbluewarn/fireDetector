@@ -13,4 +13,4 @@ https://docs.emqx.com/en/cloud/latest/connect_to_deployments/esp8266.html
 
 https://github.com/bblanchon/ArduinoJson
 
-https://github.com/smz/Arduino-RTCtime/blob/master/examples/DS3231_Alarms_and_Temperature/DS3231_Alarms_and_Temperature.ino
+https://github.com/arduino/ArduinoCore-renesas/blob/main/libraries/RTC/src/RTC.h
