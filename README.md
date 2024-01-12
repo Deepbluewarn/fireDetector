@@ -6,6 +6,11 @@
 참고문헌
 
 https://docs.arduino.cc/tutorials/uno-r4-wifi/wifi-examples
+
 https://docs.arduino.cc/tutorials/uno-r4-wifi/rtc
+
 https://docs.emqx.com/en/cloud/latest/connect_to_deployments/esp8266.html
+
 https://github.com/bblanchon/ArduinoJson
+
+https://github.com/smz/Arduino-RTCtime/blob/master/examples/DS3231_Alarms_and_Temperature/DS3231_Alarms_and_Temperature.ino
